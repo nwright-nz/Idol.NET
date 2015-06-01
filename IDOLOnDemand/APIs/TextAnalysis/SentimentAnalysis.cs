@@ -8,6 +8,7 @@ namespace IDOLOnDemand.APIs
 {
     public class SentimentAnalysis
     {
+        #region Request Parameters
         public class RequestParams
         {
             private string _url;
@@ -49,19 +50,86 @@ namespace IDOLOnDemand.APIs
             }
 
         }
+        #endregion
 
-        public class SAAggregate
+
+    }
+
+
+    #region Async Output
+    public class SentimentAnalysisOutputAsync
+    {
+        public class Positive
         {
             public string sentiment { get; set; }
-            public int score { get; set; }
+            public object topic { get; set; }
+            public double score { get; set; }
+            public string original_text { get; set; }
+            public int original_length { get; set; }
+            public string normalized_text { get; set; }
+            public int normalized_length { get; set; }
         }
 
-        public class SentimentAnalysisResult
+        public class Aggregate
         {
-            public List<object> positive { get; set; }
+            public string sentiment { get; set; }
+            public double score { get; set; }
+        }
+
+        public class Result
+        {
+            public List<Positive> positive { get; set; }
             public List<object> negative { get; set; }
-            public SAAggregate aggregate { get; set; }
+            public Aggregate aggregate { get; set; }
+        }
+
+        public class Action
+        {
+            public Result result { get; set; }
+            public string status { get; set; }
+            public string action { get; set; }
+            public string version { get; set; }
+        }
+
+        public class RootObject
+        {
+            public List<Action> actions { get; set; }
+            public string jobID { get; set; }
+            public string status { get; set; }
         }
     }
+
+    #endregion
+
+    #region Sync Output
+
+    public class SentimentAnalysisOutput
+    {
+        public class Positive
+        {
+            public string sentiment { get; set; }
+            public object topic { get; set; }
+            public double score { get; set; }
+            public string original_text { get; set; }
+            public int original_length { get; set; }
+            public string normalized_text { get; set; }
+            public int normalized_length { get; set; }
+        }
+
+        public class Aggregate
+        {
+            public string sentiment { get; set; }
+            public double score { get; set; }
+        }
+
+        public class RootObject
+        {
+            public List<Positive> positive { get; set; }
+            public List<object> negative { get; set; }
+            public Aggregate aggregate { get; set; }
+        }
+    }
+    #endregion
+
 }
 

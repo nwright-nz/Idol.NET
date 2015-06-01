@@ -16,7 +16,10 @@ namespace IDOLOnDemand.Helpers
         [DescriptionAttribute("analyzesentiment")]
         SENTIMENTANALYSIS,
         [DescriptionAttribute("recognizespeech")]
-        SPEECHRECOGNITION
+        SPEECHRECOGNITION,
+        [DescriptionAttribute("createtextindex")]
+        CREATETEXTINDEX
+
 
 
 
@@ -55,7 +58,7 @@ namespace IDOLOnDemand.Helpers
             string properties = "";
             foreach (var item in requestParams.GetType().GetProperties())
             {
-                if (item.GetValue(requestParams) == null)
+                if (item.GetValue(requestParams, null) == null)
                 {
                     //ignore param
                 }
@@ -85,6 +88,7 @@ namespace IDOLOnDemand.Helpers
 
                 var response = client.Execute(request);
                 var content = response.Content;
+                return content;
 
 
             }
@@ -117,12 +121,13 @@ namespace IDOLOnDemand.Helpers
 
                 AsyncJob.JobResults.Results jr = SimpleJson.DeserializeObject<AsyncJob.JobResults.Results>(resultsContent);
                 string status = string.Empty;
+                string res = string.Empty;
 
                 while (jr.status == "queued" | jr.status == "in progress")
                 {
                     resultsResponse = asyncClient.Execute(results);
                     resultsContent = resultsResponse.Content;
-
+                    res = resultsContent;
                     jr = SimpleJson.DeserializeObject<AsyncJob.JobResults.Results>(resultsContent);
 
 
@@ -132,7 +137,9 @@ namespace IDOLOnDemand.Helpers
                 {
 
 
-                    return jr.actions[0].result.document.ToString();
+
+                    return res;
+                    
                 }
 
             }
@@ -143,7 +150,7 @@ namespace IDOLOnDemand.Helpers
 
 
 
-            return "";
+            return null;
         }
 
     }

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace IDOLOnDemand.APIs
 {
-    public class SpeechRecoginition
-    {
-
+    public class SpeechRecognition
         
+    {
+        #region Parameters for request
         public class RequestParams
         {
             private string _url;
@@ -60,50 +60,37 @@ namespace IDOLOnDemand.APIs
 
 
         }
-
-
-
-
-
-        public class Offset
-        {
-            public string type { get; set; }
-        }
-
-        public class Content
-        {
-            public string type { get; set; }
-        }
-
-        public class Properties
-        {
-            public Offset offset { get; set; }
-            public Content content { get; set; }
-        }
-
-        public class Items
-        {
-            public string type { get; set; }
-            public Properties properties { get; set; }
-            public List<string> required { get; set; }
-        }
-
+        #endregion Parameters for request
+    }
+    #region Async Output
+    public class SpeechRecognitionOutput
+    {
+       
         public class Document
         {
-            public string type { get; set; }
-            public Items items { get; set; }
+            public string content { get; set; }
         }
 
-        public class ObjectProperties
+        public class Result
         {
-            public Document document { get; set; }
+            public List<Document> document { get; set; }
+        }
+
+        public class Action
+        {
+            public Result result { get; set; }
+            public string status { get; set; }
+            public string action { get; set; }
+            public string version { get; set; }
         }
 
         public class RootObject
         {
-            public string type { get; set; }
-            public ObjectProperties properties { get; set; }
-            public List<string> required { get; set; }
+            public List<Action> actions { get; set; }
+            public string jobID { get; set; }
+            public string status { get; set; }
         }
     }
+#endregion Async Output
+
 }
