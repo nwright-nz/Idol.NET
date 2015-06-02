@@ -68,6 +68,7 @@
     <Compile Include="IDOLOnDemand\APIs\TextAnalysis\SentimentAnalysis.cs" />
     <Compile Include="IDOLOnDemand\APIs\Unstructured Text Indexing\AddTextToIndex.cs" />
     <Compile Include="IDOLOnDemand\APIs\Unstructured Text Indexing\CreateTextIndex.cs" />
+    <Compile Include="IDOLOnDemand\APIs\Unstructured Text Indexing\DeleteDocumentFromIndex.cs" />
     <Compile Include="IDOLOnDemand\APIs\Unstructured Text Indexing\DeleteTextIndex.cs" />
     <Compile Include="IDOLOnDemand\APIs\Unstructured Text Indexing\GetIndexInfo.cs" />
     <Compile Include="IDOLOnDemand\Helpers\AsyncJob.cs" />

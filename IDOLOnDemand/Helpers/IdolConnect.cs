@@ -24,7 +24,9 @@ namespace IDOLOnDemand.Helpers
         [DescriptionAttribute("indexstatus")]
         GETINDEXINFO,
         [DescriptionAttribute("deletetextindex")]
-        DELETEINDEX
+        DELETEINDEX,
+        [DescriptionAttribute("deletefromtextindex")]
+        DELETEFROMINDEX
     }
 
     public class IdolConnect
