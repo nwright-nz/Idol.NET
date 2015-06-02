@@ -22,7 +22,9 @@ namespace IDOLOnDemand.Helpers
         [DescriptionAttribute("addtotextindex")]
         ADDTOTEXTINDEX,
         [DescriptionAttribute("indexstatus")]
-        GETINDEXINFO
+        GETINDEXINFO,
+        [DescriptionAttribute("deletetextindex")]
+        DELETEINDEX
     }
 
     public class IdolConnect

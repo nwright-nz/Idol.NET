@@ -115,7 +115,17 @@ namespace IDOLOnDemand.APIs
     #region Sync Output
     public class AddTextToIndexOutput
     {
+        public class Reference
+        {
+            public string reference { get; set; }
+            public int id { get; set; }
+        }
 
+        public class RootObject
+        {
+            public string index { get; set; }
+            public List<Reference> references { get; set; }
+        }
     }
 
 
