@@ -18,12 +18,11 @@ namespace IDOLOnDemand.Helpers
         [DescriptionAttribute("recognizespeech")]
         SPEECHRECOGNITION,
         [DescriptionAttribute("createtextindex")]
-        CREATETEXTINDEX
-
-
-
-
-
+        CREATETEXTINDEX,
+        [DescriptionAttribute("addtotextindex")]
+        ADDTOTEXTINDEX,
+        [DescriptionAttribute("indexstatus")]
+        GETINDEXINFO
     }
 
     public class IdolConnect
@@ -127,7 +126,7 @@ namespace IDOLOnDemand.Helpers
                 {
                     resultsResponse = asyncClient.Execute(results);
                     resultsContent = resultsResponse.Content;
-                    res = resultsContent;
+                  //  res = resultsContent;
                     jr = SimpleJson.DeserializeObject<AsyncJob.JobResults.Results>(resultsContent);
 
 
@@ -138,8 +137,9 @@ namespace IDOLOnDemand.Helpers
 
 
 
-                    return res;
-                    
+                    return resultsContent;
+;
+
                 }
 
             }
