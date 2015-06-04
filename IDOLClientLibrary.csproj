@@ -65,6 +65,8 @@
   <ItemGroup>
     <Compile Include="IDOLOnDemand\APIs\AudioVideo\SpeechRecognition.cs" />
     <Compile Include="IDOLOnDemand\APIs\Connectors\CancelConnector.cs" />
+    <Compile Include="IDOLOnDemand\APIs\Format Conversion\ExtractText.cs" />
+    <Compile Include="IDOLOnDemand\APIs\Format Conversion\OCRDocument.cs" />
     <Compile Include="IDOLOnDemand\APIs\TextAnalysis\SentimentAnalysis.cs" />
     <Compile Include="IDOLOnDemand\APIs\Unstructured Text Indexing\AddTextToIndex.cs" />
     <Compile Include="IDOLOnDemand\APIs\Unstructured Text Indexing\CreateTextIndex.cs" />

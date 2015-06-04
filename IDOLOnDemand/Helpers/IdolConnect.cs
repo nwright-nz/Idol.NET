@@ -26,7 +26,11 @@ namespace IDOLOnDemand.Helpers
         [DescriptionAttribute("deletetextindex")]
         DELETEINDEX,
         [DescriptionAttribute("deletefromtextindex")]
-        DELETEFROMINDEX
+        DELETEFROMINDEX,
+        [DescriptionAttribute("ocrdocument")]
+        OCDDOCUMENT,
+        [DescriptionAttribute("extracttext")]
+        EXTRACTTEXT
     }
 
     public class IdolConnect
