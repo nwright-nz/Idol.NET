@@ -30,7 +30,9 @@ namespace IDOLOnDemand.Helpers
         [DescriptionAttribute("ocrdocument")]
         OCDDOCUMENT,
         [DescriptionAttribute("extracttext")]
-        EXTRACTTEXT
+        EXTRACTTEXT,
+        [DescriptionAttribute("viewdocument")]
+        VIEWDOCUMENT
     }
 
     public class IdolConnect
@@ -135,8 +137,15 @@ namespace IDOLOnDemand.Helpers
                     resultsResponse = asyncClient.Execute(results);
                     resultsContent = resultsResponse.Content;
                   //  res = resultsContent;
-                    jr = SimpleJson.DeserializeObject<AsyncJob.JobResults.Results>(resultsContent);
-
+                    try
+                    {
+                        jr = SimpleJson.DeserializeObject<AsyncJob.JobResults.Results>(resultsContent);
+                    }
+                    catch (InvalidCastException ex)
+                    {
+                      return  GetResultsNonJson(resultsContent, results);
+                        
+                    }
 
                 }
 
@@ -159,6 +168,32 @@ namespace IDOLOnDemand.Helpers
 
 
             return null;
+        }
+
+        private string GetResultsNonJson(string resultsContent, RestSharp.RestRequest results)
+        {
+            var asyncClient = new RestClient(apiURL);
+            IRestResponse resultsResponse = null;
+
+            AsyncJob.JobResultsNonStandard.RootObject jr = SimpleJson.DeserializeObject<AsyncJob.JobResultsNonStandard.RootObject>(resultsContent);
+            while (jr.status == "queued" | jr.status == "in progress")
+            {
+                resultsResponse = asyncClient.Execute(results);
+                resultsContent = resultsResponse.Content;
+                
+            }
+
+            if (jr.status == "finished")
+            {
+
+
+
+                return resultsContent;
+
+            }
+
+
+            return "";
         }
 
     }
