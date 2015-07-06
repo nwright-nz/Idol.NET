@@ -45,6 +45,11 @@
     <Compile Include="APIs\Connectors\CancelConnector.cs" />
     <Compile Include="APIs\TextAnalysis\SentimentAnalysis.cs" />
     <Compile Include="APIs\AudioVideo\SpeechRecoginition.cs" />
+    <Compile Include="APIs\UnstructuredTextIndexing\AddTextToIndex.cs" />
+    <Compile Include="APIs\UnstructuredTextIndexing\CreateTextIndex.cs" />
+    <Compile Include="APIs\UnstructuredTextIndexing\DeleteDocumentFromIndex.cs" />
+    <Compile Include="APIs\UnstructuredTextIndexing\DeleteTextIndex.cs" />
+    <Compile Include="APIs\UnstructuredTextIndexing\GetIndexInfo.cs" />
     <Compile Include="Helpers\AsyncJob.cs" />
     <Compile Include="Helpers\EnumUtils.cs" />
     <Compile Include="Helpers\IdolConnect.cs" />
