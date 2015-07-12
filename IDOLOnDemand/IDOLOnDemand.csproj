@@ -55,6 +55,7 @@
     <Compile Include="Helpers\IdolConnect.cs" />
     <Compile Include="Helpers\Tools.cs" />
     <Compile Include="Model\AddToTextIndex.cs" />
+    <Compile Include="Model\AddUserStore.cs" />
     <Compile Include="Model\BarcodeRecognition.cs" />
     <Compile Include="Model\CreateTextIndex.cs" />
     <Compile Include="Model\ExpandContainer.cs" />
@@ -69,6 +70,9 @@
     <Compile Include="Model\ViewDocument.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Response\AddToTextIndexResponse.cs" />
+    <Compile Include="Response\AddUserStoreResponse.cs" />
+    <Compile Include="Model\AddUserToStore.cs" />
+    <Compile Include="Response\AddUserToStoreResponse.cs" />
     <Compile Include="Response\BarcodeRecognitionResponse.cs" />
     <Compile Include="Response\CreateTextIndexResponse.cs" />
     <Compile Include="Response\ErrorResponse.cs" />
