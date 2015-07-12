@@ -28,17 +28,28 @@ This returns JSON that has been deserialized into objects for ease of use.
 
 At present, these functions have been completed:
 
-Expand Container : 	Extracts the contents of a container file.	
-OCR Document :	Extracts text from an image.		
-Store Object :	Stores a file.	
-Text Extraction :	Extracts text from a file.		
+Expand Container : 	Extracts the contents of a container file.
+
+OCR Document :	Extracts text from an image.
+
+Store Object :	Stores a file.
+
+Text Extraction :	Extracts text from a file.
+
 View Document : 	Converts a document to HTML format for viewing in a Web browser.
-Barcode Recognition : 	Detects and decodes 1D and 2D barcodes in an image that you provide.		
+
+Barcode Recognition : 	Detects and decodes 1D and 2D barcodes in an image that you provide.
+
 Face Detection :	Detects faces in an image.
+
 Image Recognition :	Recognizes a known set of images in an image that you provide.
+
 Query Text Index :	Searches for items that match your specified natural language text, Boolean expressions, or fields.
+
 Sentiment Analysis :	Analyzes text for positive or negative sentiment.
-Add to Text Index: 	Indexes a document.		
+
+Add to Text Index: 	Indexes a document.
+
 Create Text Index :	Creates a text index.
 
 To get further info on any of these, please see https://www.idolondemand.com/developer/apis
