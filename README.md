@@ -70,6 +70,11 @@ Add Store :	Adds a user store.
 
 Add User :	Adds a user to an existing user store
 
+Add User Role: Add a user role
+
+Assign User To Store : Assign a user to an existing user role
+
+
 
 To get further info on any of these, please see https://www.idolondemand.com/developer/apis
 
