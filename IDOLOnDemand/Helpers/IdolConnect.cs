@@ -6,194 +6,64 @@ using System.Threading.Tasks;
 using RestSharp;
 using System.Reflection;
 using System.ComponentModel;
+using System.Configuration;
+
+
 
 
 namespace IDOLOnDemand.Helpers
 {
 
-    public enum ApiType
+    public class IdolConnect : IDOLOnDemand.Endpoints.QueryTextIndexEndpoint
     {
-        [DescriptionAttribute("analyzesentiment")]
-        SENTIMENTANALYSIS,
-        [DescriptionAttribute("recognizespeech")]
-        SPEECHRECOGNITION,
-        [DescriptionAttribute("createtextindex")]
-        CREATETEXTINDEX,
-        [DescriptionAttribute("addtotextindex")]
-        ADDTOTEXTINDEX,
-        [DescriptionAttribute("indexstatus")]
-        GETINDEXINFO,
-        [DescriptionAttribute("deletetextindex")]
-        DELETEINDEX,
-        [DescriptionAttribute("deletefromtextindex")]
-        DELETEFROMINDEX,
-        [DescriptionAttribute("ocrdocument")]
-        OCDDOCUMENT,
-        [DescriptionAttribute("extracttext")]
-        EXTRACTTEXT,
-        [DescriptionAttribute("viewdocument")]
-        VIEWDOCUMENT
-    }
-
-    public class IdolConnect
-    {
-        const string apiURL = "https://api.idolondemand.com/";
-        private string _apiKey;
-        private string _sync;
-
-
-
-        public string Sync
-        {
-            get { return _sync; }
-            set { _sync = value; }
-        }
-
-
-        public string ApiKey
-        {
-            get { return _apiKey; }
-            set { _apiKey = value; }
-        }
-
-
-
-
-        public string Connect(string apiFunction, IdolConnect connectionDetails, object requestParams)
+        static string apiURL = ConfigurationManager.AppSettings["BaseURL"];
+        static string apiKey = ConfigurationManager.AppSettings["ApiKey"];
+    
+        public static string Connect(object requestParams, string endpoint)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
-
-
-            string properties = "";
             foreach (var item in requestParams.GetType().GetProperties())
             {
-                if (item.GetValue(requestParams, null) == null)
+                if (item.GetValue(requestParams, null) != null)
                 {
-                    //ignore param
+                    parameters.Add(item.Name, item.GetValue(requestParams, null).ToString());
+                }
+            }
+            return MakeHttpRequest(parameters, endpoint);
+
+        }
+
+
+        private static string MakeHttpRequest(Dictionary<string, string> requestParams, string endpoint)
+        {
+
+            var client = new RestClient(apiURL);
+            var request = new RestRequest(endpoint, Method.POST);
+
+            foreach (var entry in requestParams)
+            {
+                //check if parameter has multi values - | is the delimiter for these
+                var splitArray = entry.Value.Split('|');
+                if (splitArray.Count() > 1)
+                {
+                    foreach (var x in splitArray)
+                    {
+                        request.AddParameter(entry.Key, x);
+                    }
+
                 }
                 else
                 {
-                    parameters.Add(item.Name, item.GetValue(requestParams, null).ToString());
-                    // properties += item.Name + "=" + item.GetValue(requestParams, null) + "&";
-                }
-            }
-
-
-
-            properties += "apikey=" + connectionDetails.ApiKey;
-
-
-
-            if (Sync == "sync")
-            {
-                var client = new RestClient(apiURL);
-                var request = new RestRequest("1/api/" + Sync + "/" + apiFunction + "/v1", Method.POST);
-
-                foreach (var entry in parameters)
-                {
                     request.AddParameter(entry.Key, entry.Value);
                 }
-                request.AddParameter("apikey", ApiKey);
-
-                var response = client.Execute(request);
-                var content = response.Content;
-                return content;
-
-
             }
+            request.AddParameter("apikey", apiKey);
+
+            var response = client.Execute(request);
 
 
-            else
-            {
-                //submit job and get job id
-                var asyncClient = new RestClient(apiURL);
-                var asyncRequest = new RestRequest("1/api/" + Sync + "/" + apiFunction + "/v1", Method.POST);
-
-                foreach (var entry in parameters)
-                {
-                    asyncRequest.AddParameter(entry.Key, entry.Value);
-                }
-
-                asyncRequest.AddParameter("apikey", ApiKey);
-                var asyncResponse = asyncClient.Execute(asyncRequest);
-                var asyncContent = asyncResponse.Content;
-
-                AsyncJob.Job asyncJob = SimpleJson.DeserializeObject<AsyncJob.Job>(asyncContent);
-
-                //get job status
-                string id = asyncJob.jobID;
-                var results = new RestRequest("1/job/status/" + id, Method.GET);
-                results.AddParameter("apikey", ApiKey);
-
-                var resultsResponse = asyncClient.Execute(results);
-                var resultsContent = resultsResponse.Content;
-
-                AsyncJob.JobResults.Results jr = SimpleJson.DeserializeObject<AsyncJob.JobResults.Results>(resultsContent);
-                string status = string.Empty;
-                string res = string.Empty;
-
-                while (jr.status == "queued" | jr.status == "in progress")
-                {
-                    resultsResponse = asyncClient.Execute(results);
-                    resultsContent = resultsResponse.Content;
-                  //  res = resultsContent;
-                    try
-                    {
-                        jr = SimpleJson.DeserializeObject<AsyncJob.JobResults.Results>(resultsContent);
-                    }
-                    catch (InvalidCastException ex)
-                    {
-                      return  GetResultsNonJson(resultsContent, results);
-                        
-                    }
-
-                }
-
-                if (jr.status == "finished")
-                {
-
-
-
-                    return resultsContent;
-;
-
-                }
-
-            }
-
-
-
-
-
-
-
-            return null;
-        }
-
-        private string GetResultsNonJson(string resultsContent, RestSharp.RestRequest results)
-        {
-            var asyncClient = new RestClient(apiURL);
-            IRestResponse resultsResponse = null;
-
-            AsyncJob.JobResultsNonStandard.RootObject jr = SimpleJson.DeserializeObject<AsyncJob.JobResultsNonStandard.RootObject>(resultsContent);
-            while (jr.status == "queued" | jr.status == "in progress")
-            {
-                resultsResponse = asyncClient.Execute(results);
-                resultsContent = resultsResponse.Content;
-                
-            }
-
-            if (jr.status == "finished")
-            {
-
-
-
-                return resultsContent;
-
-            }
-
-
-            return "";
+            var content = response.Content;
+            return content;
         }
 
     }

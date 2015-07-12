@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CCCF4B0D-87F4-42DF-835C-BC4FE90267E5}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{B92129BE-595E-4B03-8C72-B74C99AA102C}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IDOLOnDemand</RootNamespace>
-    <AssemblyName>IDOLOnDemand</AssemblyName>
+    <RootNamespace>TestIDOL</RootNamespace>
+    <AssemblyName>TestIDOL</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,13 +35,8 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="RestSharp">
-      <HintPath>..\packages\RestSharp.105.1.0\lib\net45\RestSharp.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,46 +44,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Endpoints\QueryTextIndexEndpoint.cs" />
-    <Compile Include="Exceptions\APIFailedException.cs" />
-    <Compile Include="Exceptions\InvalidJobArgumentsException.cs" />
-    <Compile Include="Helpers\AsyncJob.cs" />
-    <Compile Include="Helpers\EnumUtils.cs" />
-    <Compile Include="Helpers\IdolConnect.cs" />
-    <Compile Include="Helpers\Tools.cs" />
-    <Compile Include="Model\AddToTextIndex.cs" />
-    <Compile Include="Model\BarcodeRecognition.cs" />
-    <Compile Include="Model\CreateTextIndex.cs" />
-    <Compile Include="Model\ExpandContainer.cs" />
-    <Compile Include="Model\ExtractText.cs" />
-    <Compile Include="Model\OCRDocument.cs" />
-    <Compile Include="Model\FaceDetection.cs" />
-    <Compile Include="Model\QueryTexIndex.cs" />
-    <Compile Include="Model\RecognizeImages.cs" />
-    <Compile Include="Model\SentimentAnalysis.cs" />
-    <Compile Include="Model\SpeechRecognition.cs" />
-    <Compile Include="Model\StoreObject.cs" />
-    <Compile Include="Model\ViewDocument.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Response\AddToTextIndexResponse.cs" />
-    <Compile Include="Response\BarcodeRecognitionResponse.cs" />
-    <Compile Include="Response\CreateTextIndexResponse.cs" />
-    <Compile Include="Response\ErrorResponse.cs" />
-    <Compile Include="Response\ExpandContainerResponse.cs" />
-    <Compile Include="Response\ExtractTextResponse.cs" />
-    <Compile Include="Response\OCRDocumentResponse.cs" />
-    <Compile Include="Response\FaceDetectionResponse.cs" />
-    <Compile Include="Response\QueryTextIndexResponse.cs" />
-    <Compile Include="Response\RecognizeImagesResponse.cs" />
-    <Compile Include="Response\SentimentAnalysisResponse.cs" />
-    <Compile Include="Response\SpeechRecognitionResponse.cs" />
-    <Compile Include="Response\StoreObjectResponse.cs" />
-    <Compile Include="Response\ViewDocumentResponse.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IDOLOnDemand\IDOLOnDemand.csproj">
+      <Project>{cccf4b0d-87f4-42df-835c-bc4fe90267e5}</Project>
+      <Name>IDOLOnDemand</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
