@@ -66,6 +66,11 @@ Add to Text Index: 	Indexes a document.
 
 Create Text Index :	Creates a text index.
 
+Add Store :	Adds a user store.
+
+Add User :	Adds a user to an existing user store
+
+
 To get further info on any of these, please see https://www.idolondemand.com/developer/apis
 
 Further API calls will be added gradually.
