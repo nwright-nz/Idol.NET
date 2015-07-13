@@ -43,7 +43,7 @@ namespace IDOLOnDemand.Model
 
 
 
-        public OCRDocumentResponse.Value Response()
+        public OCRDocumentResponse.Value Execute()
         {
             var apiResults = IdolConnect.Connect(this, SyncEndpoint);
             var deseriaizedResponse = JsonConvert.DeserializeObject<OCRDocumentResponse.Value>(apiResults);

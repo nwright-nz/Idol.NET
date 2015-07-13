@@ -216,7 +216,7 @@ namespace IDOLOnDemand.Model
 
         #endregion
 
-        public QueryTextIndexResponse.Value Response()
+        public QueryTextIndexResponse.Value Execute()
         {
             var apiResults = IdolConnect.Connect(this, SyncEndpoint);
             var deseriaizedResponse = JsonConvert.DeserializeObject<QueryTextIndexResponse.Value>(apiResults);

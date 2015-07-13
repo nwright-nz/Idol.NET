@@ -28,7 +28,7 @@ namespace IDOLOnDemand.Model
 
 
 
-        public string Response()
+        public string Execute()
         {
             //Response is slightly different here as the result is just html string, not a json response.
             //left error checking in just in case.

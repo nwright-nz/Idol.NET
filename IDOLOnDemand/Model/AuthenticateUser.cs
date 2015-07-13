@@ -38,7 +38,7 @@ namespace IDOLOnDemand.Model
 
 
 
-        public AuthenticateUserResponse.Value Response()
+        public AuthenticateUserResponse.Value Execute()
         {
             var apiResults = IdolConnect.Connect(this, SyncEndpoint);
             var deseriaizedResponse = JsonConvert.DeserializeObject<AuthenticateUserResponse.Value>(apiResults);

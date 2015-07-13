@@ -25,7 +25,7 @@ namespace IDOLOnDemand.Response
 
 
 
-        public AddUserToStoreResponse.Value Response()
+        public AddUserToStoreResponse.Value Execute()
         {
             var apiResults = IdolConnect.Connect(this, SyncEndpoint);
             var deseriaizedResponse = JsonConvert.DeserializeObject<AddUserToStoreResponse.Value>(apiResults);
