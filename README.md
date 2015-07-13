@@ -78,6 +78,15 @@ Authenticate User : Authenticates a user
 
 List User Roles : Lists all user roles
 
+List User Stores : Lists all user stores
+
+Delete User Store : Deletes specified user store
+
+Delete User Role : Deletes specified user role
+
+Delete User : Deletes specified user
+
+
 
 
 To get further info on any of these, please see https://www.idolondemand.com/developer/apis
