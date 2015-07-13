@@ -74,6 +74,10 @@ Add User Role: Add a user role
 
 Assign User To Store : Assign a user to an existing user role
 
+Authenticate User : Authenticates a user
+
+List User Roles : Lists all user roles
+
 
 
 To get further info on any of these, please see https://www.idolondemand.com/developer/apis
