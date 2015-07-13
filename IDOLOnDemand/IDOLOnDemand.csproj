@@ -58,10 +58,12 @@
     <Compile Include="Model\AddUserRole.cs" />
     <Compile Include="Model\AddUserStore.cs" />
     <Compile Include="Model\AssignRoleToUser.cs" />
+    <Compile Include="Model\AuthenticateUser.cs" />
     <Compile Include="Model\BarcodeRecognition.cs" />
     <Compile Include="Model\CreateTextIndex.cs" />
     <Compile Include="Model\ExpandContainer.cs" />
     <Compile Include="Model\ExtractText.cs" />
+    <Compile Include="Model\ListRoles.cs" />
     <Compile Include="Model\OCRDocument.cs" />
     <Compile Include="Model\FaceDetection.cs" />
     <Compile Include="Model\QueryTexIndex.cs" />
@@ -77,11 +79,13 @@
     <Compile Include="Model\AddUserToStore.cs" />
     <Compile Include="Response\AddUserToStoreResponse.cs" />
     <Compile Include="Response\AssignRoleToUserResponse.cs" />
+    <Compile Include="Response\AuthenticateUserResponse.cs" />
     <Compile Include="Response\BarcodeRecognitionResponse.cs" />
     <Compile Include="Response\CreateTextIndexResponse.cs" />
     <Compile Include="Response\ErrorResponse.cs" />
     <Compile Include="Response\ExpandContainerResponse.cs" />
     <Compile Include="Response\ExtractTextResponse.cs" />
+    <Compile Include="Response\ListRolesResponse.cs" />
     <Compile Include="Response\OCRDocumentResponse.cs" />
     <Compile Include="Response\FaceDetectionResponse.cs" />
     <Compile Include="Response\QueryTextIndexResponse.cs" />
