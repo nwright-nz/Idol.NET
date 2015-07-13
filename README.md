@@ -30,7 +30,7 @@ string text = "This is a good message to test the sentiment analysis engine with
                 Text = text ,
                 Language = SentimentAnalysis.LanguageSelection.Eng
             };
-            var response = analysis.Response();
+            var response = analysis.Execute();
 
             Console.WriteLine("The string '" + text + "'  had a " +  response.aggregate.sentiment + " sentiment. Its scoring was : " + response.aggregate.score);
             Console.ReadLine();
