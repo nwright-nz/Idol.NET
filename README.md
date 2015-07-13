@@ -76,15 +76,21 @@ Assign User To Store : Assign a user to an existing user role
 
 Authenticate User : Authenticates a user
 
-List User Roles : Lists all user roles
-
-List User Stores : Lists all user stores
-
 Delete User Store : Deletes specified user store
 
 Delete User Role : Deletes specified user role
 
 Delete User : Deletes specified user
+
+List User Roles : Lists all user roles
+
+List User Stores : Lists all user stores
+
+List User Roles: Lists all user roles
+
+List Users : List all users
+
+Unassign Role : Unassign role from user
 
 
 
