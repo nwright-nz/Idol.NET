@@ -1,7 +1,7 @@
 # Idol.NET
 
 A .NET client library for the HP IDOL OnDemand API's.
-Work very much in progress, and at present only synchronous calls will work. Async coming...
+Work in progress, and at present only synchronous calls will work. Async coming...
 
 You will need an API key for IDOL OnDemand - get one here : https://www.idolondemand.com/signup.html
 See this post for more info on creating your key: https://nwrightnz.wordpress.com/2015/07/08/hello-world/
