@@ -53,6 +53,7 @@
     <Compile Include="Helpers\AsyncJob.cs" />
     <Compile Include="Helpers\EnumUtils.cs" />
     <Compile Include="Helpers\IdolConnect.cs" />
+    <Compile Include="Helpers\StringOrArrayConverter.cs" />
     <Compile Include="Helpers\Tools.cs" />
     <Compile Include="Model\AddToTextIndex.cs" />
     <Compile Include="Model\AddUserRole.cs" />
@@ -66,6 +67,9 @@
     <Compile Include="Model\DeleteUserStore.cs" />
     <Compile Include="Model\ExpandContainer.cs" />
     <Compile Include="Model\ExtractText.cs" />
+    <Compile Include="Model\IndexStatus.cs" />
+    <Compile Include="Model\ListIndexes.cs" />
+    <Compile Include="Model\ListResources.cs" />
     <Compile Include="Model\ListRoles.cs" />
     <Compile Include="Model\ListUserRoles.cs" />
     <Compile Include="Model\ListUsers.cs" />
@@ -74,6 +78,7 @@
     <Compile Include="Model\FaceDetection.cs" />
     <Compile Include="Model\QueryTexIndex.cs" />
     <Compile Include="Model\RecognizeImages.cs" />
+    <Compile Include="Model\RestoreTextIndex.cs" />
     <Compile Include="Model\SentimentAnalysis.cs" />
     <Compile Include="Model\SpeechRecognition.cs" />
     <Compile Include="Model\StoreObject.cs" />
@@ -95,6 +100,9 @@
     <Compile Include="Response\ErrorResponse.cs" />
     <Compile Include="Response\ExpandContainerResponse.cs" />
     <Compile Include="Response\ExtractTextResponse.cs" />
+    <Compile Include="Response\IndexStatusResponse.cs" />
+    <Compile Include="Response\ListIndexesResponse.cs" />
+    <Compile Include="Response\ListResourcesResponse.cs" />
     <Compile Include="Response\ListRolesResponse.cs" />
     <Compile Include="Response\ListUserRolesResponse.cs" />
     <Compile Include="Response\ListUsersResponse.cs" />
@@ -103,6 +111,7 @@
     <Compile Include="Response\FaceDetectionResponse.cs" />
     <Compile Include="Response\QueryTextIndexResponse.cs" />
     <Compile Include="Response\RecognizeImagesResponse.cs" />
+    <Compile Include="Response\RestoreTextIndexResponse.cs" />
     <Compile Include="Response\SentimentAnalysisResponse.cs" />
     <Compile Include="Response\SpeechRecognitionResponse.cs" />
     <Compile Include="Response\StoreObjectResponse.cs" />

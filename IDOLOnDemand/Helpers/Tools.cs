@@ -16,5 +16,11 @@ namespace IDOLOnDemand.Helpers
             o.GetType().GetGenericTypeDefinition().IsAssignableFrom(typeof(List<>));
             
         }
+
+
+        public static string convertDate(DateTime time)
+        {
+            return time.ToString("yyyy-MM-ddTHH:mm:ssK");
+        }
     }
 }
