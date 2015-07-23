@@ -61,7 +61,10 @@
     <Compile Include="Model\AssignRoleToUser.cs" />
     <Compile Include="Model\AuthenticateUser.cs" />
     <Compile Include="Model\BarcodeRecognition.cs" />
+    <Compile Include="Model\CreateClassification.cs" />
     <Compile Include="Model\CreateTextIndex.cs" />
+    <Compile Include="Model\DeleteFromTextIndex.cs" />
+    <Compile Include="Model\DeleteTextIndex.cs" />
     <Compile Include="Model\DeleteUser.cs" />
     <Compile Include="Model\DeleteUserRole.cs" />
     <Compile Include="Model\DeleteUserStore.cs" />
@@ -93,7 +96,10 @@
     <Compile Include="Response\AssignRoleToUserResponse.cs" />
     <Compile Include="Response\AuthenticateUserResponse.cs" />
     <Compile Include="Response\BarcodeRecognitionResponse.cs" />
+    <Compile Include="Response\CreateClassificationResponse.cs" />
     <Compile Include="Response\CreateTextIndexResponse.cs" />
+    <Compile Include="Response\DeleteFromTextIndexResponse.cs" />
+    <Compile Include="Response\DeleteTextIndexResponse.cs" />
     <Compile Include="Response\DeleteUserResponse.cs" />
     <Compile Include="Response\DeleteUserRoleResponse.cs" />
     <Compile Include="Response\DeleteUserStoreResponse.cs" />
