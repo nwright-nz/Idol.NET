@@ -22,9 +22,13 @@ namespace IDOLOnDemand.Model
 
 
 
-        public IndexStatusResponse.Value Execute()
+        public IndexStatusResponse.Value Execute(IdolConnect ic)
         {
-            var apiResults = IdolConnect.Connect(this, SyncEndpoint);
+
+
+            
+
+            var apiResults = ic.Connect(this, SyncEndpoint);
             var deseriaizedResponse = JsonConvert.DeserializeObject<IndexStatusResponse.Value>(apiResults);
 
             if (deseriaizedResponse.detail == null)

@@ -22,9 +22,9 @@ namespace IDOLOnDemand.Model
 
 
 
-        public AddUserStoreResponse.Value Execute()
+        public AddUserStoreResponse.Value Execute(IdolConnect ic)
         {
-            var apiResults = IdolConnect.Connect(this, SyncEndpoint);
+            var apiResults = ic.Connect(this, SyncEndpoint);
             var deseriaizedResponse = JsonConvert.DeserializeObject<AddUserStoreResponse.Value>(apiResults);
 
             if (deseriaizedResponse.message == "store was added")

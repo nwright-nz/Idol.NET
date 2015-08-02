@@ -25,9 +25,9 @@ namespace IDOLOnDemand.Response
 
 
 
-        public AddUserToStoreResponse.Value Execute()
+        public AddUserToStoreResponse.Value Execute(IdolConnect ic)
         {
-            var apiResults = IdolConnect.Connect(this, SyncEndpoint);
+            var apiResults = ic.Connect(this, SyncEndpoint);
             var deseriaizedResponse = JsonConvert.DeserializeObject<AddUserToStoreResponse.Value>(apiResults);
 
             if (deseriaizedResponse.message == "user was added")

@@ -23,9 +23,9 @@ namespace IDOLOnDemand.Model
 
 
 
-        public DeleteUserStoreResponse.Value Execute()
+        public DeleteUserStoreResponse.Value Execute(IdolConnect ic)
         {
-            var apiResults = IdolConnect.Connect(this, SyncEndpoint);
+            var apiResults = ic.Connect(this, SyncEndpoint);
             var deseriaizedResponse = JsonConvert.DeserializeObject<DeleteUserStoreResponse.Value>(apiResults);
 
             if (deseriaizedResponse.message == "store was deleted")

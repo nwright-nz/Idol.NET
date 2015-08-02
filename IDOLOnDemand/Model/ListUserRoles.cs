@@ -25,9 +25,9 @@ namespace IDOLOnDemand.Model
 
 
 
-        public ListUserRolesResponse.Value Execute()
+        public ListUserRolesResponse.Value Execute(IdolConnect ic)
         {
-            var apiResults = IdolConnect.Connect(this, SyncEndpoint);
+            var apiResults = ic.Connect(this, SyncEndpoint);
             var deseriaizedResponse = JsonConvert.DeserializeObject<ListUserRolesResponse.Value>(apiResults);
 
             if (deseriaizedResponse.status != "failed" & deseriaizedResponse.status != null)

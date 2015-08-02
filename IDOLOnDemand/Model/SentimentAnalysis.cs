@@ -64,9 +64,9 @@ namespace IDOLOnDemand.Model
 
 
 
-        public SentimentAnalysisResponse.Value Execute()
+        public SentimentAnalysisResponse.Value Execute(IdolConnect ic)
         {
-            var apiResults = IdolConnect.Connect(this, SyncEndpoint);
+            var apiResults = ic.Connect(this, SyncEndpoint);
             var deseriaizedResponse = JsonConvert.DeserializeObject<SentimentAnalysisResponse.Value>(apiResults);
         
             if (deseriaizedResponse.message == null & deseriaizedResponse.detail == null)

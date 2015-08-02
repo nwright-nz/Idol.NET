@@ -24,9 +24,9 @@ namespace IDOLOnDemand.Model
 
 
 
-        public DeleteUserRoleResponse.Value Execute()
+        public DeleteUserRoleResponse.Value Execute(IdolConnect ic)
         {
-            var apiResults = IdolConnect.Connect(this, SyncEndpoint);
+            var apiResults = ic.Connect(this, SyncEndpoint);
             var deseriaizedResponse = JsonConvert.DeserializeObject<DeleteUserRoleResponse.Value>(apiResults);
 
             if (deseriaizedResponse.status != "failed" & deseriaizedResponse.status != null)

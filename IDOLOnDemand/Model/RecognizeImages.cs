@@ -52,9 +52,9 @@ namespace IDOLOnDemand.Model
 
 
 
-        public RecognizeImagesResponse.Value Execute()
+        public RecognizeImagesResponse.Value Execute(IdolConnect ic)
         {
-            var apiResults = IdolConnect.Connect(this, SyncEndpoint);
+            var apiResults = ic.Connect(this, SyncEndpoint);
             var deseriaizedResponse = JsonConvert.DeserializeObject<RecognizeImagesResponse.Value>(apiResults);
 
             if (deseriaizedResponse.message == null & deseriaizedResponse.detail == null)

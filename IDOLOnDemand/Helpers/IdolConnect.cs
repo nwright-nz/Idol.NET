@@ -7,6 +7,7 @@ using RestSharp;
 using System.Reflection;
 using System.ComponentModel;
 using System.Configuration;
+using IDOLOnDemand.Authenticator;
 
 
 
@@ -16,10 +17,18 @@ namespace IDOLOnDemand.Helpers
 
     public class IdolConnect : IDOLOnDemand.Endpoints.QueryTextIndexEndpoint
     {
-        static string apiURL = ConfigurationManager.AppSettings["BaseURL"];
-        static string apiKey = ConfigurationManager.AppSettings["ApiKey"];
+        private readonly Uri _baseIdolUri;
+        private readonly IIdolAuthenticator _authenticator;
+
+
+        public IdolConnect(Uri baseIdolUri, IIdolAuthenticator authenticator)
+        {
+            _baseIdolUri = baseIdolUri;
+            _authenticator = authenticator;
+        }
     
-        public static string Connect(object requestParams, string endpoint)
+
+        public string Connect(object requestParams, string endpoint)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             foreach (var item in requestParams.GetType().GetProperties())
@@ -34,10 +43,10 @@ namespace IDOLOnDemand.Helpers
         }
 
 
-        private static string MakeHttpRequest(Dictionary<string, string> requestParams, string endpoint)
+        private string MakeHttpRequest(Dictionary<string, string> requestParams, string endpoint)
         {
 
-            var client = new RestClient(apiURL);
+            var client = new RestClient(_baseIdolUri);
             var request = new RestRequest(endpoint, Method.POST);
 
             foreach (var entry in requestParams)
@@ -57,7 +66,7 @@ namespace IDOLOnDemand.Helpers
                     request.AddParameter(entry.Key, entry.Value);
                 }
             }
-            request.AddParameter("apikey", apiKey);
+            _authenticator.Sign(request);
 
             var response = client.Execute(request);
 

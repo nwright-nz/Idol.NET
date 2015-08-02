@@ -43,9 +43,9 @@ namespace IDOLOnDemand.Model
 
 
 
-        public CreateClassificationResponse.Value Response()
+        public CreateClassificationResponse.Value Execute(IdolConnect ic)
         {
-            var apiResults = IdolConnect.Connect(this, SyncEndpoint);
+            var apiResults = ic.Connect(this, SyncEndpoint);
             var deseriaizedResponse = JsonConvert.DeserializeObject<CreateClassificationResponse.Value>(apiResults);
 
             if (deseriaizedResponse.message == null & deseriaizedResponse.detail == null)

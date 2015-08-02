@@ -26,9 +26,9 @@ namespace IDOLOnDemand.Model
 
 
 
-        public ExpandContainerResponse.Value Execute()
+        public ExpandContainerResponse.Value Execute(IdolConnect ic)
         {
-            var apiResults = IdolConnect.Connect(this, SyncEndpoint);
+            var apiResults = ic.Connect(this, SyncEndpoint);
             var deseriaizedResponse = JsonConvert.DeserializeObject<ExpandContainerResponse.Value>(apiResults);
 
             if (deseriaizedResponse.message == null & deseriaizedResponse.detail == null)

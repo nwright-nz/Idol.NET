@@ -8,9 +8,10 @@ using IDOLOnDemand.Response;
 using IDOLOnDemand.Helpers;
 using IDOLOnDemand.Exceptions;
 
-namespace IDOLOnDemand.Model
+namespace IDOLOnDemand.Model 
+
 {
-    public class AddToTextIndex
+    public class AddToTextIndex : IIdolRequest
     {
 
         public string SyncEndpoint = "/sync/addtotextindex/v1";
@@ -41,9 +42,9 @@ namespace IDOLOnDemand.Model
 
 
 
-        public AddToTextIndexResponse.Value Execute()
+        public AddToTextIndexResponse.Value Execute(IInputSource inputSource, IdolConnect ic)
         {
-            var apiResults = IdolConnect.Connect(this, SyncEndpoint);
+            var apiResults = ic.Connect(this, SyncEndpoint);
             var deseriaizedResponse = JsonConvert.DeserializeObject<AddToTextIndexResponse.Value>(apiResults);
 
             if (deseriaizedResponse.message == null & deseriaizedResponse.error == 0)
@@ -70,6 +71,20 @@ namespace IDOLOnDemand.Model
                     }
                 }
             }
+
+        }
+
+        public Dictionary<string, string> ToParameterDictionary()
+        {
+            return new Dictionary<string, string> 
+           {
+               {"Reference", this.Reference},
+               {"AdditionalMetadata", this.AdditionalMetadata},
+               {"ReferencePrefix", this.Reference_Prefix},
+               {"Index",this.Index}
+
+           };
+
 
         }
     }

@@ -31,9 +31,9 @@ namespace IDOLOnDemand.Model
 
 
 
-        public ExtractTextResponse.Value Execute()
+        public ExtractTextResponse.Value Execute(IdolConnect ic)
         {
-            var apiResults = IdolConnect.Connect(this, SyncEndpoint);
+            var apiResults = ic.Connect(this, SyncEndpoint);
             var deseriaizedResponse = JsonConvert.DeserializeObject<ExtractTextResponse.Value>(apiResults);
 
             if (deseriaizedResponse.message == null & deseriaizedResponse.detail == null)

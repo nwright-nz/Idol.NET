@@ -25,9 +25,9 @@ namespace IDOLOnDemand.Model
 
 
 
-        public DeleteFromTextIndexResponse.Value Execute()
+        public DeleteFromTextIndexResponse.Value Execute(IdolConnect ic)
         {
-            var apiResults = IdolConnect.Connect(this, SyncEndpoint);
+            var apiResults = ic.Connect(this, SyncEndpoint);
             var deseriaizedResponse = JsonConvert.DeserializeObject<DeleteFromTextIndexResponse.Value>(apiResults);
 
             if (deseriaizedResponse.message == null & deseriaizedResponse.error != 4005)

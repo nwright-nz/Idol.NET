@@ -47,12 +47,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authenticator\IIdolAuthenticator.cs" />
     <Compile Include="Endpoints\QueryTextIndexEndpoint.cs" />
     <Compile Include="Exceptions\APIFailedException.cs" />
     <Compile Include="Exceptions\InvalidJobArgumentsException.cs" />
     <Compile Include="Helpers\AsyncJob.cs" />
     <Compile Include="Helpers\EnumUtils.cs" />
     <Compile Include="Helpers\IdolConnect.cs" />
+    <Compile Include="Helpers\IIdolRequest.cs" />
+    <Compile Include="Helpers\IInputSource.cs" />
     <Compile Include="Helpers\StringOrArrayConverter.cs" />
     <Compile Include="Helpers\Tools.cs" />
     <Compile Include="Model\AddToTextIndex.cs" />

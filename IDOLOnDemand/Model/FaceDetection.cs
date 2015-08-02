@@ -26,9 +26,9 @@ namespace IDOLOnDemand.Model
 
 
 
-        public FaceDetectionResponse.Value Execute()
+        public FaceDetectionResponse.Value Execute(IdolConnect ic)
         {
-            var apiResults = IdolConnect.Connect(this, SyncEndpoint);
+            var apiResults = ic.Connect(this, SyncEndpoint);
             var deseriaizedResponse = JsonConvert.DeserializeObject<FaceDetectionResponse.Value>(apiResults);
 
             if (deseriaizedResponse.message == null & deseriaizedResponse.detail == null)

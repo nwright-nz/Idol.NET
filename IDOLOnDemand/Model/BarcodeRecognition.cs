@@ -108,9 +108,9 @@ namespace IDOLOnDemand.Model
         public string Reference { get; set; }
 
 
-        public BarcodeRecognitionResponse.Value Execute()
+        public BarcodeRecognitionResponse.Value Execute(IdolConnect ic)
         {
-            var apiResults = IdolConnect.Connect(this, SyncEndpoint);
+            var apiResults = ic.Connect(this, SyncEndpoint);
             var deseriaizedResponse = JsonConvert.DeserializeObject<BarcodeRecognitionResponse.Value>(apiResults);
 
             if (deseriaizedResponse.message == null & deseriaizedResponse.detail == null)
