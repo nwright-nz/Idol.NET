@@ -16,6 +16,12 @@ namespace IDOLOnDemand.Authenticator
     {
         private readonly string _apiKey;
 
+        public ApiKeyAuthenticator(string apiKey)
+        {
+            _apiKey = apiKey;
+        }
+
+
         public void Sign(RestRequest request)
         {
             request.AddParameter("apikey", _apiKey);
