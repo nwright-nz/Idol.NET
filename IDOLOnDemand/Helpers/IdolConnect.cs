@@ -28,7 +28,7 @@ namespace IDOLOnDemand.Helpers
         }
     
 
-        public string Connect(object requestParams, string endpoint)
+        public string Connect(object requestParams, string endpoint) //old version
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             foreach (var item in requestParams.GetType().GetProperties())
@@ -42,6 +42,36 @@ namespace IDOLOnDemand.Helpers
 
         }
 
+        public string Connect(Dictionary<string, string> requestParams, string endpoint)
+        {
+            //foreach (var item in requestParams)
+            //{
+            //    if (item.Value == null)
+            //    {
+            //        item.Value = string.Empty();
+            //    }
+            //}
+            return MakeHttpRequest(requestParams, endpoint);
+
+        }
+
+        public string Connect(Dictionary<string, string> requestParams, IInputSource inputSource, string endpoint)
+        {
+            requestParams.Add(inputSource.Key, inputSource.Value);
+
+            //foreach (var item in requestParams)
+            //{
+            //    if (item.Value == null)
+            //    {
+            //        requestParams.Remove(item.Key);
+            //    }
+            //}
+            return MakeHttpRequest(requestParams, endpoint);
+
+        }
+
+
+
 
         private string MakeHttpRequest(Dictionary<string, string> requestParams, string endpoint)
         {
@@ -52,18 +82,22 @@ namespace IDOLOnDemand.Helpers
             foreach (var entry in requestParams)
             {
                 //check if parameter has multi values - | is the delimiter for these
-                var splitArray = entry.Value.Split('|');
-                if (splitArray.Count() > 1)
-                {
-                    foreach (var x in splitArray)
-                    {
-                        request.AddParameter(entry.Key, x);
-                    }
 
-                }
-                else
+                if (entry.Value != null)
                 {
-                    request.AddParameter(entry.Key, entry.Value);
+                    var splitArray = entry.Value.Split('|');
+                    if (splitArray.Count() > 1)
+                    {
+                        foreach (var x in splitArray)
+                        {
+                            request.AddParameter(entry.Key, x);
+                        }
+
+                    }
+                    else
+                    {
+                        request.AddParameter(entry.Key, entry.Value);
+                    }
                 }
             }
             _authenticator.Sign(request);

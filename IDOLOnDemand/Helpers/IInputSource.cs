@@ -65,7 +65,7 @@ namespace IDOLOnDemand.Helpers
 
         public string Key
         {
-            get { return "Uri"; }
+            get { return "Url"; }
         }
 
         public string Value

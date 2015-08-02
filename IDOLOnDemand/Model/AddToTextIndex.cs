@@ -44,7 +44,8 @@ namespace IDOLOnDemand.Model
 
         public AddToTextIndexResponse.Value Execute(IInputSource inputSource, IdolConnect ic)
         {
-            var apiResults = ic.Connect(this, SyncEndpoint);
+
+            var apiResults = ic.Connect(ToParameterDictionary(), inputSource,  SyncEndpoint);
             var deseriaizedResponse = JsonConvert.DeserializeObject<AddToTextIndexResponse.Value>(apiResults);
 
             if (deseriaizedResponse.message == null & deseriaizedResponse.error == 0)
