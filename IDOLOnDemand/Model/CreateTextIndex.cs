@@ -13,8 +13,8 @@ namespace IDOLOnDemand.Model
     public class CreateTextIndex
     {
 
-        public string SyncEndpoint = "/sync/createtextindex/v1";
-        public string AsyncEndpoint = "/async/createtextindex/v1";
+        private readonly string SyncEndpoint = "/sync/createtextindex/v1";
+        private readonly string AsyncEndpoint = "/async/createtextindex/v1";
 
         public string Index { get; set; }
         public string Text { get; set; }

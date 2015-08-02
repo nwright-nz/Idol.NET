@@ -14,8 +14,8 @@ namespace IDOLOnDemand.Model
     public class ViewDocument
     {
 
-        public string SyncEndpoint = "/sync/viewdocument/v1";
-        public string AsyncEndpoint = "/async/viewdocument/v1";
+        private readonly string SyncEndpoint = "/sync/viewdocument/v1";
+        private readonly string AsyncEndpoint = "/async/viewdocument/v1";
 
         public string Url { get; set; }
         public string File { get; set; }

@@ -55,8 +55,8 @@ namespace IDOLOnDemand.Model
         public string Reference { get; set; }
         public string Url { get; set; }
 
-        public string SyncEndpoint = "/sync/recognizespeech/v1";
-        public string AsyncEndpoint = "/async/recognizespeech/v1";
+        private readonly string SyncEndpoint = "/sync/recognizespeech/v1";
+        private readonly string AsyncEndpoint = "/async/recognizespeech/v1";
 
         // public SpeechRecognitionResponse.Value Response()
         //{

@@ -12,20 +12,16 @@ using IDOLOnDemand.Response;
 
 namespace IDOLOnDemand.Model
 {
-    public class ListUserStores
+    public class ListUserStores : IIdolRequest
     {
 
-        public string SyncEndpoint = "/sync/liststores/v1";
-        public string AsyncEndpoint = "/async/liststores/v1";
+        private readonly string SyncEndpoint = "/sync/liststores/v1";
+        private readonly string AsyncEndpoint = "/async/liststores/v1";
 
        
-
-
-
-
-        public ListUserStoresResponse.Value Execute(IdolConnect ic)
+        public ListUserStoresResponse.Value Execute(IdolConnect idolConnectionString)
         {
-            var apiResults = ic.Connect(this, SyncEndpoint);
+            var apiResults = idolConnectionString.Connect(this.ToParameterDictionary(), SyncEndpoint);
             var deseriaizedResponse = JsonConvert.DeserializeObject<ListUserStoresResponse.Value>(apiResults);
 
             if (deseriaizedResponse.message == null & deseriaizedResponse.detail == null)
@@ -44,6 +40,11 @@ namespace IDOLOnDemand.Model
                 }
             }
 
+        }
+
+        public Dictionary<string, string> ToParameterDictionary()
+        {
+            return new Dictionary<string, string> { };
         }
     }
 

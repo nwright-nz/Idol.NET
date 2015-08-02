@@ -45,8 +45,8 @@ namespace IDOLOnDemand.Model
 
         private LanguageSelection _language;
 
-        public string SyncEndpoint = "/sync/analyzesentiment/v1";
-        public string AsyncEndpoint = "/async/analyzesentiment/v1";
+        private readonly string SyncEndpoint = "/sync/analyzesentiment/v1";
+        private readonly string AsyncEndpoint = "/async/analyzesentiment/v1";
 
         public string Url { get; set; }
         public string Text { get; set; }

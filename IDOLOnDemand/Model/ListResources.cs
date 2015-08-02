@@ -14,8 +14,8 @@ namespace IDOLOnDemand.Model
     public class ListResources
     {
 
-        public string SyncEndpoint = "/sync/listresources/v1";
-        public string AsyncEndpoint = "/async/listresources/v1";
+        private readonly string SyncEndpoint = "/sync/listresources/v1";
+        private readonly string AsyncEndpoint = "/async/listresources/v1";
 
         public enum FlavorTypes
         {

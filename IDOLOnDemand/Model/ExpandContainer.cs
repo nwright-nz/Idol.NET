@@ -14,8 +14,8 @@ namespace IDOLOnDemand.Model
     public class ExpandContainer
     {
 
-        public string SyncEndpoint = "/sync/expandcontainer/v1";
-        public string AsyncEndpoint = "/async/expandcontainer/v1";
+        private readonly string SyncEndpoint = "/sync/expandcontainer/v1";
+        private readonly string AsyncEndpoint = "/async/expandcontainer/v1";
 
         public string Url { get; set; }
         public string File { get; set; }

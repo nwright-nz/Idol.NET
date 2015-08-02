@@ -16,8 +16,8 @@ namespace IDOLOnDemand.Model
     public class BarcodeRecognition
     {
 
-        public string SyncEndpoint = "/sync/recognizebarcodes/v1";
-        public string AsyncEndpoint = "/async/recognizebarcodes/v1";
+        private readonly string SyncEndpoint = "/sync/recognizebarcodes/v1";
+        private readonly string AsyncEndpoint = "/async/recognizebarcodes/v1";
 
         #region Enums
         [DataContract]

@@ -15,8 +15,8 @@ namespace IDOLOnDemand.Model
     public class RecognizeImages
     {
 
-        public string SyncEndpoint = "/sync/recognizeimages/v1";
-        public string AsyncEndpoint = "/async/recognizeimages/v1";
+        private readonly string SyncEndpoint = "/sync/recognizeimages/v1";
+        private readonly string AsyncEndpoint = "/async/recognizeimages/v1";
 
 
 

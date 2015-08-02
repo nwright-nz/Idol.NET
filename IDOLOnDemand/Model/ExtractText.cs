@@ -14,8 +14,8 @@ namespace IDOLOnDemand.Model
     public class ExtractText
     {
 
-        public string SyncEndpoint = "/sync/extracttext/v1";
-        public string AsyncEndpoint = "/async/extracttext/v1";
+        private readonly string SyncEndpoint = "/sync/extracttext/v1";
+        private readonly string AsyncEndpoint = "/async/extracttext/v1";
 
         public string Url { get; set; }
         public string File { get; set; }

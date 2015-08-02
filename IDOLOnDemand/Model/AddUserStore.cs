@@ -11,20 +11,22 @@ using IDOLOnDemand.Response;
 
 namespace IDOLOnDemand.Model
 {
-    public class AddUserStore
+    public class AddUserStore : IIdolRequest
     {
 
-        public string SyncEndpoint = "/sync/addstore/v1";
-        public string AsyncEndpoint = "/async/addstore/v1";
+        private readonly string SyncEndpoint = "/sync/addstore/v1";
+        private readonly string AsyncEndpoint = "/async/addstore/v1";
 
-        public string Store { get; set; }
-
-
+        private string _store;
 
 
-        public AddUserStoreResponse.Value Execute(IdolConnect ic)
+
+        public AddUserStoreResponse.Value Execute(IdolConnect ic, string UserStoreToCreate)
+
         {
-            var apiResults = ic.Connect(this, SyncEndpoint);
+            _store = UserStoreToCreate;
+
+            var apiResults = ic.Connect(this.ToParameterDictionary(), SyncEndpoint);
             var deseriaizedResponse = JsonConvert.DeserializeObject<AddUserStoreResponse.Value>(apiResults);
 
             if (deseriaizedResponse.message == "store was added")
@@ -47,11 +49,20 @@ namespace IDOLOnDemand.Model
                     {
                         throw new InvalidJobArgumentsException(deseriaizedResponse.actions[0].errors[0].reason);
                     }
-                      
-                    
+
+
                 }
             }
 
+        }
+
+        public Dictionary<string, string> ToParameterDictionary()
+        {
+            return new Dictionary<string, string>
+           {
+               {"store", _store}
+
+           };
         }
     }
 

@@ -9,25 +9,29 @@ using IDOLOnDemand.Exceptions;
 using Newtonsoft.Json;
 
 
-namespace IDOLOnDemand.Response
+namespace IDOLOnDemand.Model
 {
-    public class AddUserToStore
+    public class AddUserToStore : IIdolRequest
     {
 
-        public string SyncEndpoint = "/sync/adduser/v1";
-        public string AsyncEndpoint = "/async/adduser/v1";
+       const string SyncEndpoint = "/sync/adduser/v1";
+       const string AsyncEndpoint = "/async/adduser/v1";
 
-        public string Store { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
+       private string _store;
+       private string _email;
+       private string _password;
         
 
 
 
 
-        public AddUserToStoreResponse.Value Execute(IdolConnect ic)
+        public AddUserToStoreResponse.Value Execute(IdolConnect idolConnectionString, string UserStore, string UserEmail, string UserPassword)
         {
-            var apiResults = ic.Connect(this, SyncEndpoint);
+            _store = UserStore;
+            _email = UserEmail;
+            _password = UserPassword;
+
+            var apiResults = idolConnectionString.Connect(this.ToParameterDictionary(), SyncEndpoint);
             var deseriaizedResponse = JsonConvert.DeserializeObject<AddUserToStoreResponse.Value>(apiResults);
 
             if (deseriaizedResponse.message == "user was added")
@@ -55,6 +59,16 @@ namespace IDOLOnDemand.Response
                 }
             }
 
+        }
+
+        public Dictionary<string, string> ToParameterDictionary()
+        {
+            return new Dictionary<string, string>
+           {
+               {"store", _store},
+               {"email", _email},
+               {"password", _password}
+           };
         }
     }
 

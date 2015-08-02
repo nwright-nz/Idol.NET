@@ -12,23 +12,23 @@ using Newtonsoft.Json;
 
 namespace IDOLOnDemand.Model
 {
-    public class AssignRoleToUser
+    public class AssignRoleToUser : IIdolRequest
     {
 
-        public string SyncEndpoint = "/sync/assignrole/v1";
-        public string AsyncEndpoint = "/async/assignrole/v1";
+        const string SyncEndpoint = "/sync/assignrole/v1";
+        const string AsyncEndpoint = "/async/assignrole/v1";
 
-        public string Store { get; set; }
-        public string User { get; set; }
-        public string Role { get; set; }
+        private string _store;
+        private string _user;
+        private string _role;
 
-
-
-
-
-        public AssignRoleToUserResponse.Value Execute(IdolConnect ic)
+        public AssignRoleToUserResponse.Value Execute(IdolConnect idolConnectionString, string UserStore, string User, string RoleToAdd)
         {
-            var apiResults = ic.Connect(this, SyncEndpoint);
+            _store=UserStore;
+            _user = User;
+            _role = RoleToAdd;
+
+            var apiResults = idolConnectionString.Connect(this.ToParameterDictionary(), SyncEndpoint);
             var deseriaizedResponse = JsonConvert.DeserializeObject<AssignRoleToUserResponse.Value>(apiResults);
 
             if (deseriaizedResponse.message == "role now assigned")
@@ -64,6 +64,18 @@ namespace IDOLOnDemand.Model
         }
 
 
+
+        public Dictionary<string, string> ToParameterDictionary()
+        {
+            return new Dictionary<string, string>
+            {
+                {"store", _store},
+                {"role",_role},
+                {"user",_user}
+
+            };
+           
+        }
     }
 }
 

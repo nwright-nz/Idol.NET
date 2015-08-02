@@ -11,25 +11,25 @@ using IDOLOnDemand.Helpers;
 
 namespace IDOLOnDemand.Model
 {
-    public class DeleteUserRole
+    public class DeleteUserRole : IIdolRequest
     {
 
-        public string SyncEndpoint = "/sync/deleterole/v1";
-        public string AsyncEndpoint = "/async/deleterole/v1";
-
-        
-        public string Store { get; set; }
-        public string Role { get; set; }
+        private readonly string SyncEndpoint = "/sync/deleterole/v1";
+        private readonly string AsyncEndpoint = "/async/deleterole/v1";
 
 
+        private string _store;
+        private string _role;
 
-
-        public DeleteUserRoleResponse.Value Execute(IdolConnect ic)
+        public DeleteUserRoleResponse.Value Execute(IdolConnect idolConnectionString, string UserStore, string UserRole)
         {
-            var apiResults = ic.Connect(this, SyncEndpoint);
+            _store = UserStore;
+            _role = UserRole;
+
+            var apiResults = idolConnectionString.Connect(this.ToParameterDictionary(), SyncEndpoint);
             var deseriaizedResponse = JsonConvert.DeserializeObject<DeleteUserRoleResponse.Value>(apiResults);
 
-            if (deseriaizedResponse.status != "failed" & deseriaizedResponse.status != null)
+            if (deseriaizedResponse.status != "failed" & deseriaizedResponse.message != "role was deleted")
             {
                 return deseriaizedResponse;
             }
@@ -45,6 +45,16 @@ namespace IDOLOnDemand.Model
                 }
             }
 
+        }
+
+        public Dictionary<string, string> ToParameterDictionary()
+        {
+            return new Dictionary<string, string>
+           {
+               {"store",_store},
+               {"role",_role}
+
+           };
         }
     }
 

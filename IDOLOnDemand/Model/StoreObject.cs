@@ -13,8 +13,8 @@ namespace IDOLOnDemand.Model
     public class StoreObject
     {
 
-        public string SyncEndpoint = "/sync/storeobject/v1";
-        public string AsyncEndpoint = "/async/storeobject/v1";
+        private readonly string SyncEndpoint = "/sync/storeobject/v1";
+        private readonly string AsyncEndpoint = "/async/storeobject/v1";
 
         public string Url { get; set; }
         public string File { get; set; }

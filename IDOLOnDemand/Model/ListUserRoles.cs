@@ -11,26 +11,31 @@ using Newtonsoft.Json;
 
 namespace IDOLOnDemand.Model
 {
-    public class ListUserRoles
+    public class ListUserRoles : IIdolRequest
     {
 
-        public string SyncEndpoint = "/sync/listuserroles/v1";
-        public string AsyncEndpoint = "/async/listuserroles/v1";
-
-       
-        public string Store { get; set; }
-        public string Users { get; set; }
-        public string Roles { get; set; }
+        private readonly string SyncEndpoint = "/sync/listuserroles/v1";
+        private readonly string AsyncEndpoint = "/async/listuserroles/v1";
 
 
+        private string _store;
+        private string _users;
+        private string _roles;
 
 
-        public ListUserRolesResponse.Value Execute(IdolConnect ic)
+
+
+        public ListUserRolesResponse.Value Execute(IdolConnect idolConnectionString, string UserStore, string Users = "", string Roles = "")
         {
-            var apiResults = ic.Connect(this, SyncEndpoint);
+            _store = UserStore;
+            _users = Users;
+            _roles = Roles;
+
+
+            var apiResults = idolConnectionString.Connect(this.ToParameterDictionary(), SyncEndpoint);
             var deseriaizedResponse = JsonConvert.DeserializeObject<ListUserRolesResponse.Value>(apiResults);
 
-            if (deseriaizedResponse.status != "failed" & deseriaizedResponse.status != null)
+            if (deseriaizedResponse.error == 0)
             {
                 return deseriaizedResponse;
             }
@@ -46,6 +51,17 @@ namespace IDOLOnDemand.Model
                 }
             }
 
+        }
+
+        public Dictionary<string, string> ToParameterDictionary()
+        {
+            return new Dictionary<string, string>
+           {
+               {"store",_store},
+               {"users",_users},
+               {"roles",_roles}
+
+           };
         }
     }
 

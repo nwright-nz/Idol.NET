@@ -165,8 +165,8 @@ namespace IDOLOnDemand.Model
 
         #region properties
 
-        public string SyncEndpoint = "/sync/querytextindex/v1";
-        public string AsyncEndpoint = "/async/querytextindex/v1";
+        private readonly string SyncEndpoint = "/sync/querytextindex/v1";
+        private readonly string AsyncEndpoint = "/async/querytextindex/v1";
 
         
         ///<summary> The query text</summary>

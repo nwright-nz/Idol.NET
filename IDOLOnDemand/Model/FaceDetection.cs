@@ -15,8 +15,8 @@ namespace IDOLOnDemand.Model
     public class FaceDetection
     {
 
-        public string SyncEndpoint = "/sync/detectfaces/v1";
-        public string AsyncEndpoint = "/async/detectfaces/v1";
+        private readonly string SyncEndpoint = "/sync/detectfaces/v1";
+        private readonly string AsyncEndpoint = "/async/detectfaces/v1";
 
         public string Url { get; set; }
         public bool Additional { get; set; }

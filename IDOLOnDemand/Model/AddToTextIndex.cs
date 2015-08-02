@@ -14,8 +14,8 @@ namespace IDOLOnDemand.Model
     public class AddToTextIndex : IIdolRequest
     {
 
-        public string SyncEndpoint = "/sync/addtotextindex/v1";
-        public string AsyncEndpoint = "/async/addtotextindex/v1";
+        private readonly string SyncEndpoint = "/sync/addtotextindex/v1";
+        private readonly string AsyncEndpoint = "/async/addtotextindex/v1";
 
         public string Url { get; set; }
         public string Json { get; set; }

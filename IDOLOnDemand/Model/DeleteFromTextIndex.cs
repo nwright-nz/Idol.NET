@@ -14,8 +14,8 @@ namespace IDOLOnDemand.Model
     public class DeleteFromTextIndex
     {
 
-        public string SyncEndpoint = "/sync/deletefromtextindex/v1";
-        public string AsyncEndpoint = "/async/deletefromtextindex/v1";
+        private readonly string SyncEndpoint = "/sync/deletefromtextindex/v1";
+        private readonly string AsyncEndpoint = "/async/deletefromtextindex/v1";
 
         public string Index { get; set; }
         public string Index_Reference { get; set; }

@@ -14,8 +14,8 @@ namespace IDOLOnDemand.Model
     public class IndexStatus
     {
 
-        public string SyncEndpoint = "/sync/indexstatus/v1";
-        public string AsyncEndpoint = "/async/indexstatus/v1";
+        private readonly string SyncEndpoint = "/sync/indexstatus/v1";
+        private readonly string AsyncEndpoint = "/async/indexstatus/v1";
 
         public string Index { get; set; }
        

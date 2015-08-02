@@ -11,25 +11,25 @@ using IDOLOnDemand.Exceptions;
 
 namespace IDOLOnDemand.Model
 {
-    public class DeleteUser
+    public class DeleteUser : IIdolRequest
     {
 
-        public string SyncEndpoint = "/sync/deleteuser/v1";
-        public string AsyncEndpoint = "/async/deleteuser/v1";
+        private readonly string SyncEndpoint = "/sync/deleteuser/v1";
+        private readonly string AsyncEndpoint = "/async/deleteuser/v1";
 
-        public string Store { get; set; }
-        public string Email { get; set; }
+        private string _store;
+        private string _email;
      
 
-
-
-
-        public DeleteUserResponse.Value Execute(IdolConnect ic)
+        public DeleteUserResponse.Value Execute(IdolConnect idolConnectionString, string UserStore, string UserEmail)
         {
-            var apiResults = ic.Connect(this, SyncEndpoint);
+            _store = UserStore;
+            _email = UserEmail;
+
+            var apiResults = idolConnectionString.Connect(this.ToParameterDictionary(), SyncEndpoint);
             var deseriaizedResponse = JsonConvert.DeserializeObject<DeleteUserResponse.Value>(apiResults);
 
-            if (deseriaizedResponse.status != "failed" & deseriaizedResponse.status != null)
+            if (deseriaizedResponse.message != "user was deleted" & deseriaizedResponse.status != "failed")
             {
                 return deseriaizedResponse;
             }
@@ -45,6 +45,16 @@ namespace IDOLOnDemand.Model
                 }
             }
 
+        }
+
+        public Dictionary<string, string> ToParameterDictionary()
+        {
+            return new Dictionary<string, string>
+           {
+               {"store", _store},
+               {"email", _email}
+
+           };
         }
     }
 

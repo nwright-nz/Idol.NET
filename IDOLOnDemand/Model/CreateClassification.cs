@@ -14,8 +14,8 @@ namespace IDOLOnDemand.Model
     public class CreateClassification
     {
 
-        public string SyncEndpoint = "/sync/createclassificationobjects/v1";
-        public string AsyncEndpoint = "/async/createclassificationobjects/v1";
+        private readonly string SyncEndpoint = "/sync/createclassificationobjects/v1";
+        private readonly string AsyncEndpoint = "/async/createclassificationobjects/v1";
 
         public string Name { get; set; }
         public string Description { get; set; }

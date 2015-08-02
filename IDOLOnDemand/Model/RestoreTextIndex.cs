@@ -14,8 +14,8 @@ namespace IDOLOnDemand.Model
     public class RestoreTextIndex
     {
 
-        public string SyncEndpoint = "/sync/restoretextindex/v1";
-        public string AsyncEndpoint = "/async/restoretextindex/v1";
+        private readonly string SyncEndpoint = "/sync/restoretextindex/v1";
+        private readonly string AsyncEndpoint = "/async/restoretextindex/v1";
 
        
         public string Index { get; set; }

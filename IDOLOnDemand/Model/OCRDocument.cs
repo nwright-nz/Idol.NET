@@ -13,8 +13,8 @@ namespace IDOLOnDemand.Model
     public class OCRDocument
     {
 
-        public string SyncEndpoint = "/sync/ocrdocument/v1";
-        public string AsyncEndpoint = "/async/ocrdocument/v1";
+        private readonly string SyncEndpoint = "/sync/ocrdocument/v1";
+        private readonly string AsyncEndpoint = "/async/ocrdocument/v1";
 
 
 

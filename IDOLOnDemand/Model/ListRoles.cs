@@ -11,21 +11,20 @@ using Newtonsoft.Json;
 
 namespace IDOLOnDemand.Model
 {
-    public class ListRoles
+    public class ListRoles :IIdolRequest
     {
 
-        public string SyncEndpoint = "/sync/listroles/v1";
-        public string AsyncEndpoint = "/async/listroles/v1";
-
-       
-        public string Store { get; set; }
+        private readonly string SyncEndpoint = "/sync/listroles/v1";
+        private readonly string AsyncEndpoint = "/async/listroles/v1";
 
 
+        private string _store;
 
-
-        public ListRolesResponse.Value Execute(IdolConnect ic)
+        public ListRolesResponse.Value Execute(IdolConnect idolConnectionString, string UserStore)
         {
-            var apiResults = ic.Connect(this, SyncEndpoint);
+            _store = UserStore;
+
+            var apiResults = idolConnectionString.Connect(this.ToParameterDictionary(), SyncEndpoint);
             var deseriaizedResponse = JsonConvert.DeserializeObject<ListRolesResponse.Value>(apiResults);
 
             if (deseriaizedResponse.message == null & deseriaizedResponse.detail == null)
@@ -39,6 +38,14 @@ namespace IDOLOnDemand.Model
                
             }
 
+        }
+
+        public Dictionary<string, string> ToParameterDictionary()
+        {
+            return new Dictionary<string, string>
+           {
+               {"store",_store}
+           };
         }
     }
 

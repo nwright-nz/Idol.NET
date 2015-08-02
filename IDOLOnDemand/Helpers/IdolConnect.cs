@@ -26,7 +26,7 @@ namespace IDOLOnDemand.Helpers
             _baseIdolUri = baseIdolUri;
             _authenticator = authenticator;
         }
-    
+
 
         public string Connect(object requestParams, string endpoint) //old version
         {
@@ -44,13 +44,7 @@ namespace IDOLOnDemand.Helpers
 
         public string Connect(Dictionary<string, string> requestParams, string endpoint)
         {
-            //foreach (var item in requestParams)
-            //{
-            //    if (item.Value == null)
-            //    {
-            //        item.Value = string.Empty();
-            //    }
-            //}
+
             return MakeHttpRequest(requestParams, endpoint);
 
         }
@@ -59,13 +53,6 @@ namespace IDOLOnDemand.Helpers
         {
             requestParams.Add(inputSource.Key, inputSource.Value);
 
-            //foreach (var item in requestParams)
-            //{
-            //    if (item.Value == null)
-            //    {
-            //        requestParams.Remove(item.Key);
-            //    }
-            //}
             return MakeHttpRequest(requestParams, endpoint);
 
         }

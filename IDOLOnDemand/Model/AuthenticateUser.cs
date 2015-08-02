@@ -11,20 +11,20 @@ using Newtonsoft.Json;
 
 namespace IDOLOnDemand.Model
 {
-    public class AuthenticateUser
+    public class AuthenticateUser : IIdolRequest
     {
 
-        public string SyncEndpoint = "/sync/authenticate/v1";
-        public string AsyncEndpoint = "/async/authenticate/v1";
+        const string SyncEndpoint = "/sync/authenticate/v1";
+        const string AsyncEndpoint = "/async/authenticate/v1";
 
         public enum AuthMechanism
         {
             simple
         }
 
-        public string Store { get; set; }
-        public string User { get; set; }
-        public string Password { get; set; }
+        private string _store;
+        private string _user;
+        private string _password;
 
         private AuthMechanism _mechanism;
 
@@ -38,9 +38,13 @@ namespace IDOLOnDemand.Model
 
 
 
-        public AuthenticateUserResponse.Value Execute(IdolConnect ic)
+        public AuthenticateUserResponse.Value Execute(IdolConnect ic, string UserStore, string User, string Password, AuthMechanism mech)
         {
-            var apiResults = ic.Connect(this, SyncEndpoint);
+            _store = UserStore;
+            _password = Password;
+            _user = User;
+
+            var apiResults = ic.Connect(this.ToParameterDictionary(), SyncEndpoint);
             var deseriaizedResponse = JsonConvert.DeserializeObject<AuthenticateUserResponse.Value>(apiResults);
 
             if (deseriaizedResponse.success == true | deseriaizedResponse.success == false)
@@ -60,6 +64,20 @@ namespace IDOLOnDemand.Model
                 }
             }
 
+        }
+
+        public Dictionary<string, string> ToParameterDictionary()
+        {
+
+            return new Dictionary<string, string>
+            {
+                {"store", _store},
+                {"user", _user},
+                {"password", _password},
+                {"mechanism", _mechanism.ToString()}
+
+
+            };
         }
     }
 
